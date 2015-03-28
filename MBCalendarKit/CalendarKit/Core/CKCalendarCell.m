@@ -161,7 +161,7 @@
 {
     UIView *dot = [self dot];
     
-    CGFloat dotRadius = 3;
+    CGFloat dotRadius = 10;
     CGFloat selfHeight = [self frame].size.height;
     CGFloat selfWidth = [self frame].size.width;
     
