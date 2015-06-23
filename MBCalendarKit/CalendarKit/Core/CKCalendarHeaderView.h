@@ -37,5 +37,6 @@
 
 @property (nonatomic, strong, readonly) UIGestureRecognizer *tapGesture;
 
+- (void)setHeaderColor:(UIColor *)headerColor;
 
 @end

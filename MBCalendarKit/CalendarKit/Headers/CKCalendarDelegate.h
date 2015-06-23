@@ -19,6 +19,7 @@
 // Called before/after the selected date changes
 - (void)calendarView:(CKCalendarView *)CalendarView willSelectDate:(NSDate *)date;
 - (void)calendarView:(CKCalendarView *)CalendarView didSelectDate:(NSDate *)date;
+- (void)calendarView:(CKCalendarView *)CalendarView didTapDate:(NSDate *)date;
 
 //  A row is selected in the events table. (Use to push a detail view or whatever.)
 - (void)calendarView:(CKCalendarView *)CalendarView didSelectEvent:(CKCalendarEvent *)event;

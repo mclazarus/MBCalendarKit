@@ -54,6 +54,7 @@
         
         _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
         [self addGestureRecognizer:_tapGesture];
+        [self setBackgroundColor:kCalendarColorHeaderGradientDark];
     }
     return self;
 }
@@ -63,7 +64,6 @@
 {
     [super willMoveToSuperview:newSuperview];
     [self setNeedsLayout];
-    [self setBackgroundColor:kCalendarColorHeaderGradientDark];
 }
 
 - (void)layoutSubviews
@@ -260,4 +260,8 @@
     return NO;  //  Default is no.
 }
 
+
+- (void)setHeaderColor:(UIColor *)headerColor {
+    [self setBackgroundColor:headerColor];
+}
 @end

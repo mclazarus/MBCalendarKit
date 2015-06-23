@@ -27,6 +27,8 @@
 @property (nonatomic, strong) NSDate *minimumDate;
 @property (nonatomic, strong) NSDate *maximumDate;
 
+@property (nonatomic, assign) CGRect calendarRect;
+
 @property (nonatomic, assign) NSUInteger firstWeekDay;  //  Proxies to the calendar's firstWeekDay so we can update the UI immediately.
 
 @property (nonatomic, weak) id<CKCalendarViewDataSource> dataSource;
@@ -36,6 +38,7 @@
 
 - (instancetype)init;
 - (instancetype)initWithMode:(CKCalendarDisplayMode)CalendarDisplayMode;
+- (instancetype)initWithMode:(CKCalendarDisplayMode)CalendarDisplayMode andRect:(CGRect)rect;
 
 /* Reload calendar and events. */
 
@@ -64,6 +67,8 @@
 
 - (void)setMaximumDate:(NSDate *)maximumDate;
 - (void)setMaximumDate:(NSDate *)maximumDate animated:(BOOL)animated;
+
+- (void)setHeaderColor:(UIColor *)headerColor;
 
 /* Visible Dates */
 

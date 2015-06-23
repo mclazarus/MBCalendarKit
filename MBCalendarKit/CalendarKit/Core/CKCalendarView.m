@@ -98,6 +98,7 @@
     
     if (self) {
         [self commonInitializer];
+        self.calendarRect = [[[UIApplication sharedApplication] keyWindow] bounds];
     }
     return self;
 }
@@ -126,6 +127,16 @@
     }
     return self;
     
+}
+
+
+- (instancetype)initWithMode:(CKCalendarDisplayMode)CalendarDisplayMode andRect:(CGRect)rect {
+    self = [super init];
+    if (self) {
+        [self commonInitializer];
+        self.calendarRect = rect;
+    }
+    return self;
 }
 
 #pragma mark - Reload
@@ -220,7 +231,7 @@
 {
     CGSize cellSize = [self _cellSize];
     
-    CGRect rect = [[[UIApplication sharedApplication] keyWindow] bounds];
+    CGRect rect = self.calendarRect; //[[[UIApplication sharedApplication] keyWindow] bounds];
     
     if(displayMode == CKCalendarViewModeDay)
     {
@@ -269,7 +280,7 @@
 
 - (CGSize)_cellSize
 {
-    CGSize windowSize = [UIApplication sharedApplication].keyWindow.bounds.size;
+    CGSize windowSize = self.calendarRect.size;
     
     NSCalendar *calendar = self.calendar;
     
@@ -1323,6 +1334,10 @@
     BOOL animated = ![[self calendar] date:[self date] isSameMonthAs:dateToSelect];
     
     [self setDate:dateToSelect animated:animated];
+    
+    if ([[self delegate] respondsToSelector:@selector(calendarView:didTapDate:)]) {
+        [[self delegate] calendarView:self didTapDate:dateToSelect];
+    }
 }
 
 // If a touch was cancelled, reset the index
@@ -1336,6 +1351,10 @@
     
     NSDate *dateToSelect = [[self calendar] dateByAddingDays:[self selectedIndex] toDate:firstDate];
     [self setDate:dateToSelect animated:NO];
+}
+
+- (void)setHeaderColor:(UIColor *)headerColor {
+    [self.headerView setHeaderColor:headerColor];
 }
 
 @end
